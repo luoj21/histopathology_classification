@@ -9,7 +9,6 @@
 *.DS_Store
 
 
-data/
-HMU-HC-HE-30K/
+HMU-GC-HE-30K/
 .venv
 .vscode
