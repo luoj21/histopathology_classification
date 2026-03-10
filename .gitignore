@@ -1,0 +1,15 @@
+*__pycache__
+*.pt
+*.pth
+*.log
+*.csv
+*.pdf
+*.png
+*.zip
+*.DS_Store
+
+
+data/
+HMU-HC-HE-30K/
+.venv
+.vscode

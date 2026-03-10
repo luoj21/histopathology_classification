@@ -1,0 +1,29 @@
+{"paths": {
+    "data_root": "C:\\Users\\jluo1\\Documents\\repos\\histopathology_classification\\data\\HMU-GC-HE-30K\\all_image",
+    "metadata_file": "HMU-GC-Clinical.csv",
+    "model_out_dir": "C:\\Users\\jluo1\\Documents\\repos\\histopathology_classification\\models",
+    "log_dir": "C:\\Users\\jluo1\\Documents\\repos\\histopathology_classification\\logs",
+    "plots_dir": "C:\\Users\\jluo1\\Documents\\repos\\histopathology_classification\\plots"
+},
+
+"model_params": {
+    "num_classes": 8,
+    "num_channels": 3,
+    "learning_rate": 0.001,
+    "batch_size": 128,
+    "epochs": 300,
+    "weight_decay": 0.0001,
+    "early_stopping_patience": 5,
+    "momentum": 0.9,
+    "model_name": "baseline_cbam2_adam.pt"
+},
+
+"preprocessing": {
+    "resize": false,
+    "augment": false,
+    "ycbcr": false
+},
+
+"optimizer": "Adam"
+
+}
