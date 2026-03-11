@@ -8,6 +8,7 @@ To get started:
 - Create a virtual environment: ```python3 -m venv .venv```
 - Install dependencies: ```pip install -r requirements.txt```
 - Get the ```HNU-GC-HE-30K``` data set, which can be found [here](https://www.kaggle.com/code/mdismielhossenabir/gastric-cancer-histopathology-tissue)
+    - The data set should go into the ```data``` folder, preferably under the path ```...\histopathology_classification\data\HMU-GC-HE-30K\all_image``
 - Change the ```config.json``` file to your liking
 - Run ```main.py``` 
 ---
