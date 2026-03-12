@@ -3,6 +3,8 @@ import cv2
 import torch
 
 from torch.utils.data import random_split
+from src.nnet.torchBaselineModel import BaselineModel
+from torchinfo import summary
 
 
 def augment_image(img):
@@ -103,3 +105,11 @@ def resize_img(img, H_new, W_new):
     resized_img = cv2.resize(img, new_dims, interpolation=cv2.INTER_CUBIC )
 
     return resized_img
+
+
+def get_model_summary():
+    """ Gets a summary of the model architecture and number of parameters using torchinfo"""
+
+    model = BaselineModel(num_classes=8, num_channels=3)
+    input_size = (1, 3, 224, 224)
+    summary(model, input_size=input_size)
