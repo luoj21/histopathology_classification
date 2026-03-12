@@ -2,9 +2,10 @@
 
 A implementation of a cheap covolutional neural network with convolutional block attention modules (CBAM) and squeeze and excite blocks (SE). Histopathology data sets are inheriently difficult to classify due to the complexity of the images that capture cellular differences in the tissue. Neural networks that have performed well on these types of data sets are often computationally expensive and involve millions-billions of parameters. CBAM and SE blocks alongside data augmentation techniques have been shown to be very effective in boosting classification accuracy across all classes.
 
-![](images/original_img.png)
-
-![](images/augmented_img.png)
+<p align="center">
+  <img src="images/original_img.png" width="400"/>
+  <img src="images/augmented_img.png" width="400"/>
+</p>
 
 ---
 To get started:
