@@ -15,7 +15,7 @@
     "weight_decay": 0.0001,
     "early_stopping_patience": 5,
     "momentum": 0.9,
-    "model_name": "baseline_cbam2_adam.pt"
+    "model_name": "baseline_cbam2_adam"
 },
 
 "preprocessing": {

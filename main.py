@@ -4,6 +4,7 @@ import torch.nn as nn
 import torch.optim.lr_scheduler as lr_scheduler
 import json
 import copy
+import os
 
 from tqdm import tqdm
 from src.nnet.torchBaselineModel import BaselineModel, EarlyStopping
@@ -31,6 +32,8 @@ def main(test = False):
     train_accs, val_accs= [], []
     epochs = []
 
+    os.makedirs(os.path.join(config["paths"]["model_out_dir"], config["model_params"]["model_name"]), exist_ok=True)
+    os.makedirs(os.path.join(config["paths"]["plots_dir"], config["model_params"]["model_name"]), exist_ok=True)
 
 
     device = check_cuda_availability()
@@ -142,8 +145,12 @@ def main(test = False):
         es(model, val_loss)
         if es.early_stop:
             train_logger.info(es.status)
-            plot_loss_acc(epochs, train_losses, val_losses, train_accs, val_accs, output_dir = config["paths"]["plots_dir"])
-            torch.save(es.best_model, f"{config['paths']['model_out_dir']}\\{config['model_params']['model_name']}")
+            plot_loss_acc(epochs, train_losses, val_losses, train_accs, val_accs, output_dir = os.path.join(config["paths"]["model_out_dir"], config["model_params"]["model_name"]))
+            torch.save(es.best_model, f"{os.path.join(config["paths"]["model_out_dir"], config["model_params"]["model_name"])}.pt")
+
+            with open(os.path.join(config["paths"]["model_out_dir"], config["model_params"]["model_name"]), "w") as f:
+                json.dump(config, f, indent=4)
+            
             break
 
         scheduler.step()
@@ -178,8 +185,8 @@ def main(test = False):
         train_logger.info(f"Test acc: {test_acc}. Test loss: {test_loss} \n")
 
 
-        plot_confusion_matrix(y_preds, y_true, class_names = dataset.img_types, output_dir = config["paths"]["plots_dir"])
-        plot_roc_curve(y_preds_proba, y_true, class_names = dataset.img_types, output_dir = config["paths"]["plots_dir"])
+        plot_confusion_matrix(y_preds, y_true, class_names = dataset.img_types, output_dir = os.path.join(config["paths"]["plots_dir"], config["model_params"]["model_name"]))
+        plot_roc_curve(y_preds_proba, y_true, class_names = dataset.img_types, output_dir = os.path.join(config["paths"]["plots_dir"], config["model_params"]["model_name"]))
 
 
 
