@@ -7,6 +7,14 @@ A implementation of a cheap covolutional neural network with convolutional block
   <img src="images/augmented_img.png" width="400"/>
 </p>
 
+<p align="center">
+  <img src="images/confusion_matrix.png" width="400"/>
+  <img src="images/roc_curve.png" width="400"/>
+</p>
+
+_Example images used in data-augmentation, as well as performance of the baseline architecture + CBAM_
+
+
 ---
 To get started:
 - Do  ```git clone https://github.com/luoj21/histopathology_classification.git```
