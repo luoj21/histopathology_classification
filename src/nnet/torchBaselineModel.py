@@ -96,6 +96,7 @@ class BaselineModel(nn.Module):
         self.convblock1 = nn.Sequential(
             nn.Conv2d(in_channels=num_channels, out_channels=32, kernel_size=(3,3), stride=(1,1), padding = 1),
             nn.Conv2d(in_channels=32, out_channels=32, kernel_size=(3,3), stride=(1,1), padding = 1),
+            CBAMBlock(num_channels=32, reduction_ratio=4, kernel_size=5),
             nn.MaxPool2d(kernel_size=(3,3)),
             nn.ReLU()
         )

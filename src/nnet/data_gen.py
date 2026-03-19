@@ -11,16 +11,12 @@ class ImageDataset(Dataset):
         """
         Custom PyTorch image data set 
         
-        :param data_root: Path to where all data is stored
-        :type data_root: str
-        :param metadata_file: Name of the metadata file
-        :type metadata_file: str
-        :param augment: Whether or not to perform image augmentation for pre-processing
-        :type augment: bool
-        :param ycbcr: Whether or not to convert images to YCbCr color space for pre-processing
-        :type ycbcr: bool
-        :param resize: Whether or not to resize images for pre-processing
-        :type resize: bool
+        Inputs: 
+        -  data_root: Path to where all data is stored
+        -  metadata_file: Name of the metadata file
+        -  augment: Whether or not to perform image augmentation for pre-processing
+        -  ycbcr: Whether or not to convert images to YCbCr color space for pre-processing
+        -  resize: Whether or not to resize images for pre-processing
         """
         
         self.data_root = data_root
