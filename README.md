@@ -25,6 +25,7 @@ To get started:
 - Get the ```HNU-GC-HE-30K``` data set, which can be found [here](https://www.kaggle.com/code/mdismielhossenabir/gastric-cancer-histopathology-tissue)
     - The data set should go into the ```data``` folder, preferably under the path ```...\histopathology_classification\data\HMU-GC-HE-30K\all_image```
 - Change the ```config.json``` file to your liking
+- If you want to add/remove blocks to the network, change the architecture under ```src\nnet\torchBaselineModel.py```
 - Run ```main.py``` 
 ---
 
