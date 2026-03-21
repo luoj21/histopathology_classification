@@ -13,8 +13,9 @@ A implementation of a cheap covolutional neural network with convolutional block
 </p>
 
 _Example images used in data-augmentation, as well as performance of the baseline architecture + CBAM_
-
-
+---
+PyTorch Installation:
+- Instructions to install PyTorch [here](https://pytorch.org/get-started/locally/)
 ---
 To get started:
 - Do  ```git clone https://github.com/luoj21/histopathology_classification.git```
