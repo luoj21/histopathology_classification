@@ -34,6 +34,9 @@ def main(test = False):
 
     os.makedirs(os.path.join(config["paths"]["model_out_dir"], config["model_params"]["model_name"]), exist_ok=True)
     os.makedirs(os.path.join(config["paths"]["plots_dir"], config["model_params"]["model_name"]), exist_ok=True)
+    model_config_dir = os.path.join(config["paths"]["model_out_dir"], config["model_params"]["model_name"])
+    model_plots_folder = os.path.join(config["paths"]["plots_dir"], config["model_params"]["model_name"])
+    
 
 
     device = check_cuda_availability()
@@ -145,13 +148,15 @@ def main(test = False):
 
         
         es(model, val_loss)
-        if es.early_stop:
+        if es.early_stop or epoch == NUM_EPOCHS - 1:
             train_logger.info(es.status)
-            plot_loss_acc(epochs, train_losses, val_losses, train_accs, val_accs, output_dir = os.path.join(config["paths"]["model_out_dir"], config["model_params"]["model_name"]))
-            torch.save(es.best_model, f"{os.path.join(config["paths"]["model_out_dir"], config["model_params"]["model_name"])}.pt")
+            plot_loss_acc(epochs, train_losses, val_losses, train_accs, val_accs, output_dir=model_config_dir)
+            torch.save(es.best_model, f"{os.path.join(model_config_dir, config['model_params']['model_name'])}.pt")
+            train_logger.info(f"Model saved at {os.path.join(model_config_dir, config['model_params']['model_name'])}.pt \n")
 
-            with open(os.path.join(config["paths"]["model_out_dir"], config["model_params"]["model_name"]), "w") as f:
+            with open(os.path.join(model_config_dir, config['model_params']['model_name']), "w") as f:
                 json.dump(config, f, indent=4)
+                train_logger.info(f"Config saved at {os.path.join(model_config_dir, config['model_params']['model_name'])} \n")
             
             break
 
@@ -187,8 +192,8 @@ def main(test = False):
         train_logger.info(f"Test acc: {test_acc}. Test loss: {test_loss} \n")
 
 
-        plot_confusion_matrix(y_preds, y_true, class_names = dataset.img_types, output_dir = os.path.join(config["paths"]["plots_dir"], config["model_params"]["model_name"]))
-        plot_roc_curve(y_preds_proba, y_true, class_names = dataset.img_types, output_dir = os.path.join(config["paths"]["plots_dir"], config["model_params"]["model_name"]))
+        plot_confusion_matrix(y_preds, y_true, class_names = dataset.img_types, output_dir = model_plots_folder)
+        plot_roc_curve(y_preds_proba, y_true, class_names = dataset.img_types, output_dir = model_plots_folder)
 
 
 
