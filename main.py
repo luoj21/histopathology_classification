@@ -38,12 +38,14 @@ def main(test = False):
 
     device = check_cuda_availability()
     model = BaselineModel(num_classes=config["model_params"]["num_classes"], 
-                          num_channels=config["model_params"]["num_channels"]).to(device)
+                          num_channels=config["model_params"]["num_channels"],).to(device)
 
     dataset= ImageDataset(data_root, metadata_file, 
                           augment=config['preprocessing']['augment'], 
                           ycbcr=config['preprocessing']['ycbcr'], 
-                          resize=config['preprocessing']['resize'])
+                          resize=config['preprocessing']['resize'],
+                          wavelet=config['preprocessing']['wavelet'],
+                          wavelet_levels=config['preprocessing']['wavelet_levels'])
                           
     train_dataset, val_dataset, test_dataset = train_test_split(dataset, 0.7, 0.15)
 
