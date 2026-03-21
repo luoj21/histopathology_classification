@@ -8,20 +8,22 @@
 
 "model_params": {
     "num_classes": 8,
-    "num_channels": 3,
+    "num_channels": 16,
     "learning_rate": 0.001,
     "batch_size": 128,
-    "epochs": 300,
+    "epochs": 2,
     "weight_decay": 0.0001,
     "early_stopping_patience": 5,
     "momentum": 0.9,
-    "model_name": "baseline_cbam2_adam"
+    "model_name": "baseline_cbam_wavelet_adam"
 },
 
 "preprocessing": {
     "resize": false,
     "augment": false,
-    "ycbcr": false
+    "ycbcr": false,
+    "wavelet": true,
+    "wavelet_levels": 2
 },
 
 "optimizer": "Adam"
