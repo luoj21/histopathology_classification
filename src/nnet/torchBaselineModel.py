@@ -2,6 +2,8 @@ import torch
 import torch.nn as nn
 import copy
 
+from src.nnet.wavelet import MaxEnergySelector
+
 class ChannelAttention(nn.Module):
     
     def __init__(self, num_channels, reduction_ratio=16):
@@ -94,9 +96,9 @@ class BaselineModel(nn.Module):
         super(BaselineModel, self).__init__()
 
         self.convblock1 = nn.Sequential(
+            MaxEnergySelector(num_selected_channels=num_channels), 
             nn.Conv2d(in_channels=num_channels, out_channels=32, kernel_size=(3,3), stride=(1,1), padding = 1),
             nn.Conv2d(in_channels=32, out_channels=32, kernel_size=(3,3), stride=(1,1), padding = 1),
-            CBAMBlock(num_channels=32, reduction_ratio=4, kernel_size=5),
             nn.MaxPool2d(kernel_size=(3,3)),
             nn.ReLU()
         )
@@ -120,7 +122,7 @@ class BaselineModel(nn.Module):
 
         # Fully connected layer
         self.fc = nn.Sequential(
-            nn.Linear(in_features=2048, out_features=1024),
+            nn.Linear(in_features=128, out_features=1024), # change this if wavelet transform is used and number of channels changes
             nn.Dropout(p=0.15),
             nn.Linear(in_features=1024, out_features=num_classes)
         )

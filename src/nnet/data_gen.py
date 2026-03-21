@@ -3,11 +3,13 @@ import os
 import cv2
 
 from torch.utils.data import Dataset
+
+from src.nnet.wavelet import wavelet_packet_transform
 from ..utils.my_utils import augment_image, rbg2ycbcr, resize_img # .. means go up one level (from nnet to src)
 
 
 class ImageDataset(Dataset):
-    def __init__(self, data_root: str, metadata_file: str, augment: bool, ycbcr: bool, resize: bool):
+    def __init__(self, data_root: str, metadata_file: str, augment: bool, ycbcr: bool, resize: bool, wavelet: bool, wavelet_levels: int):
         """
         Custom PyTorch image data set 
         
@@ -24,6 +26,8 @@ class ImageDataset(Dataset):
         self.augment = augment
         self.ycbcr = ycbcr
         self.resize = resize
+        self.wavelet = wavelet
+        self.wavelet_levels = wavelet_levels
 
         self.img_types = os.listdir(self.data_root)
 
@@ -62,6 +66,9 @@ class ImageDataset(Dataset):
 
         if self.augment:
             img = augment_image(img) 
+
+        if self.wavelet:
+            img = wavelet_packet_transform(img, maxlevel=self.wavelet_levels)
         
         img =  img / 255.0
         img = img.transpose(2, 0, 1) # Change from H x W x C to C x H x W (Channels First)
