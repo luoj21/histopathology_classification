@@ -27,12 +27,22 @@ To get started:
 - Change the ```config.json``` file to your liking
 - If you want to add/remove blocks to the network, change the architecture under ```src\nnet\torchBaselineModel.py```
 - Run ```main.py``` 
+- ```eda.py``` has some modules for plotting individual images, as well as lower dimensional representations of the images using Laplacian Eigenmaps
 ---
+
+<p align="center">
+  <img src="images/laplacian_eigenmap_3d.png" width="400"/>
+  <img src="images/laplacian_eigenmap_2d.png" width="400"/>
+</p>
+
+
+_Example 3D and 2D projections of 2 classes of images_
 
 Some references:
 - [CoAtNeXt:An Attention-Enhanced ConvNeXtV2-Transformer Hybrid Model for Gastric Tissue Classification](https://arxiv.org/abs/2509.09242)
 - [CViTS-Net: A CNN-ViT Network With Skip Connections for Histopathology Image Classification](https://ieeexplore.ieee.org/document/10643450)
 - [Squeeze-and-Excitation Networks](https://arxiv.org/abs/1709.01507)
 - [CBAM: Convolutional Block Attention Module](https://arxiv.org/abs/1807.06521)
-
+- [Image classification using convolutional neural network with wavelet domain inputs](https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/ipr2.12466)
+- [Notes on Laplacian Eigenmaps from CMU](https://www.cs.cmu.edu/~aarti/Class/10701/slides/Lecture21_1.pdf)
 ---
